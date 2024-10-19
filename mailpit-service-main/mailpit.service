@@ -1,0 +1,13 @@
+[Unit]
+Description=Mailpit Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/mail
+ExecStart=/home/mail/mailpit
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

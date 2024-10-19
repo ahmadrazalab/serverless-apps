@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SMTP Test</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">SMTP Credentials Test</h1>
+      <form method="post">
+        <div class="form-group">
+          <label for="smtp_server">SMTP Server</label>
+          <input type="text" class="form-control" id="smtp_server" name="smtp_server" required>
+        </div>
+        <div class="form-group">
+          <label for="smtp_port">SMTP Port</label>
+          <input type="number" class="form-control" id="smtp_port" name="smtp_port" required>
+        </div>
+        <div class="form-group">
+          <label for="smtp_user">SMTP Username</label>
+          <input type="text" class="form-control" id="smtp_user" name="smtp_user" required>
+        </div>
+        <div class="form-group">
+          <label for="smtp_password">SMTP Password</label>
+          <input type="password" class="form-control" id="smtp_password" name="smtp_password" required>
+        </div>
+        <div class="form-group">
+          <label for="from_email">From Email</label>
+          <input type="email" class="form-control" id="from_email" name="from_email" required>
+        </div>
+        <div class="form-group">
+          <label for="to_email">To Email</label>
+          <input type="email" class="form-control" id="to_email" name="to_email" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Test</button>
+      </form>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="mt-4">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seafile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seafile
+  template:
+    metadata:
+      labels:
+        app: seafile
+    spec:
+      containers:
+        - name: seafile
+          image: seafileltd/seafile-mc:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_HOST
+              value: seafile-mysql
+            - name: DB_ROOT_PASSWD
+              value: db_dev
+            - name: TIME_ZONE
+              value: "Etc/UTC"
+            - name: SEAFILE_ADMIN_EMAIL
+              value: admin@admin.com
+            - name: SEAFILE_ADMIN_PASSWORD
+              value: admin@123
+            - name: SEAFILE_SERVER_LETSENCRYPT
+              value: "false"
+            - name: SEAFILE_SERVER_HOSTNAME
+              value: docs.seafile.com
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seafile
+spec:
+  selector:
+    app: seafile
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stress-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stress-test
+  template:
+    metadata:
+      labels:
+        app: stress-test
+    spec:
+      nodeSelector:  # Add this section
+        kubernetes.io/hostname: node8  # Specify the node name here
+      containers:
+      - name: stress-test
+        image: stress-test:latest
