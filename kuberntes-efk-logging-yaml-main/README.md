@@ -1,1 +1,0 @@
-# kuberntes-efk-logging-yaml
